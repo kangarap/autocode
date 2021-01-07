@@ -19,6 +19,8 @@ public class FileUtil {
             Properties properties = new Properties();
             properties.load(is);
 
+            System.out.println(is);
+            System.out.println("读取");
             return properties.getOrDefault(key, "").toString();
 
         } catch (Exception e) {
