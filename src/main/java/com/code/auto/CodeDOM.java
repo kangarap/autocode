@@ -15,7 +15,7 @@ public class CodeDOM {
     private String dealTableName;
 
 
-    private CodeDOM(String tableName) {
+    public CodeDOM(String tableName) {
 
         this.dealTableName = StringUtil.captureName(StringUtil.camelCaseName(tableName));
         this.tableName = tableName;
@@ -25,7 +25,7 @@ public class CodeDOM {
 
 
 
-    private void createPojo(List<TableInfo> tableInfos) {
+    protected void createPojo(List<TableInfo> tableInfos) {
         File file = FileUtil.createFile(basePath + "model" + SLASH + dealTableName + ".java");
 
         StringBuffer stringBuffer = new StringBuffer();
@@ -94,7 +94,7 @@ public class CodeDOM {
     /**
      * 创建vo类
      */
-    private void createVo(List<TableInfo> tableInfos) {
+    protected void createVo(List<TableInfo> tableInfos) {
         File file = FileUtil.createFile(basePath + "vo" + SLASH + dealTableName + "Vo.java");
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(
@@ -118,7 +118,7 @@ public class CodeDOM {
     /**
      * 创建repository类
      */
-    private void createRepository(List<TableInfo> tableInfos) {
+    protected void createRepository(List<TableInfo> tableInfos) {
         File file = FileUtil.createFile(basePath + "repository" +SLASH + dealTableName + "Repository.java");
         StringBuffer stringBuffer = new StringBuffer();
         String t = "String";
@@ -148,7 +148,7 @@ public class CodeDOM {
     /**
      * 创建service类
      */
-    private void createService(List<TableInfo> tableInfos) {
+    protected void createService(List<TableInfo> tableInfos) {
         File file = FileUtil.createFile(basePath + "service" + SLASH + dealTableName + "Service.java");
         StringBuffer stringBuffer = new StringBuffer();
         String t = "String";
@@ -207,7 +207,7 @@ public class CodeDOM {
     /**
      * 创建controller类
      */
-    private void createController(List<TableInfo> tableInfos) {
+    protected void createController(List<TableInfo> tableInfos) {
         File file = FileUtil.createFile(basePath + "controller" + SLASH + dealTableName + "Controller.java");
         StringBuffer stringBuffer = new StringBuffer();
         String t = "String";
@@ -243,7 +243,7 @@ public class CodeDOM {
     /**
      * 获取表结构信息
      */
-    private List<TableInfo> getTableInfo() {
+    protected List<TableInfo> getTableInfo() {
         DBConnectionUtil dbConnectionUtil = new DBConnectionUtil();
         Connection conn = null;
         PreparedStatement ps = null;
