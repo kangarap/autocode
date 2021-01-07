@@ -290,7 +290,7 @@ public class CodeDOM {
     /**
      * 快速创建，供外部调用，调用之前先设置一下项目的基础路径
      */
-    protected String create(boolean vo, boolean repository, boolean service, boolean controller) {
+    public String create(boolean vo, boolean repository, boolean service, boolean controller) {
         List<TableInfo> tableInfo = getTableInfo();
 
 
