@@ -15,7 +15,7 @@ public class FileUtil {
     public static String readProperties(String key){
         try {
             //读取配置文件
-            InputStream is = FileUtil.class.getClassLoader().getResourceAsStream("src/main/resources/application.properties");
+            InputStream is = FileUtil.class.getClassLoader().getResourceAsStream("application.properties");
             Properties properties = new Properties();
             properties.load(is);
 
