@@ -18,13 +18,10 @@ public class FileUtil {
             InputStream is = FileUtil.class.getClassLoader().getResourceAsStream("application.properties");
             Properties properties = new Properties();
             properties.load(is);
-
-            System.out.println(is);
-            System.out.println("读取");
             return properties.getOrDefault(key, "").toString();
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("配置文件读取错误！");
         }
     }
 
@@ -50,9 +47,8 @@ public class FileUtil {
             }
         } catch (Exception e) {
             file = null;
-            System.err.println("新建文件操作出错");
             //输出到日志文件中
-            e.printStackTrace();
+            throw new RuntimeException("输出文件出错！");
         }
         return file;
     }
@@ -74,11 +70,9 @@ public class FileUtil {
             myFile.close();
             resultFile.close();
         } catch (Exception e) {
-            System.err.println("写入操作出错");
             //输出到日志文件中
-            e.printStackTrace();
+            throw new RuntimeException("写入操作出错！");
         }
-        System.out.println(file.getAbsolutePath());
     }
 }
 

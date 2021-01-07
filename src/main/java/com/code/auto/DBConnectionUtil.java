@@ -20,17 +20,16 @@ public class DBConnectionUtil {
 
     public DBConnectionUtil() throws RuntimeException{
 
-        if("".equals(url) || "".equals(username) || "".equals(password) || "".equals(driver_name))
-        {
-            throw new RuntimeException("sql params not set!");
-        }
-
         String url = readProperties("auto.code.mysql.url");
         String username = readProperties("auto.code.mysql.username");
         String password = readProperties("auto.code.mysql.password");
         String driver_name = readProperties("auto.code.mysql.driver-class");
 
-        System.out.println(driver_name);
+        if("".equals(url) || "".equals(username) || "".equals(password) || "".equals(driver_name))
+        {
+            throw new RuntimeException("sql params not set!");
+        }
+
         this.url = url;
         this.username = username;
         this.password = password;
@@ -51,7 +50,7 @@ public class DBConnectionUtil {
             Class.forName(this.driver_name);
         } catch (ClassNotFoundException e) {
             //输出到日志文件中
-            e.printStackTrace();
+            throw new RuntimeException("数据库驱动加载失败: " + this.driver_name);
         }
 
         // 2、连接数据库
@@ -59,7 +58,7 @@ public class DBConnectionUtil {
             conn = DriverManager.getConnection(this.url, this.username, this.password);
         } catch (SQLException e) {
             //输出到日志文件中
-            e.printStackTrace();
+            throw new RuntimeException("数据库链接失败: " + e.getMessage());
         }
         return conn;
     }
